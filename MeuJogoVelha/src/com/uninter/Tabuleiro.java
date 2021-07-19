@@ -5,9 +5,36 @@ public class Tabuleiro {
 	//1 - X - Jogador humano
 	//-1 - O - Computador
 	//0 - Espaco vazio
-	public int situacao() {
-		//criar logica de verificar quem venceu ou se empatou ou se o jogo continua
-		return 0;
+	public boolean situacao() {
+		// logica de verificar quem venceu ou se empatou ou se o jogo continua
+		if(ganhou() == 0 ){
+            System.out.println("----------------------");
+            System.out.println("\nRodada "+rodada);
+            System.out.println("É a vez do jogador " + vez() );
+            
+            if(vez()==1)
+                jogador1.jogar(tabuleiro);
+            else
+                jogador2.jogar(tabuleiro);
+            
+            
+            if(tabuleiro.tabuleiroCompleto()){
+                System.out.println("Tabuleiro Completo. Jogo empatado");
+                return false;
+            }
+            vez++;
+            rodada++;
+
+            return true;
+        } else{
+            if(ganhou() == -1 )
+                System.out.println("Jogador 1 ganhou!");
+            else
+                System.out.println("Jogador 2 ganhou!");
+            
+            return false;
+        }
+	
 	}
 	
 	public void visualizar() {
